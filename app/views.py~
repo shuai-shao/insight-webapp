@@ -1,0 +1,24 @@
+from flask import render_template
+from app import app
+import pymysql as mdb
+
+db = mdb.connect(user='root', host='localhost',passwd = 'seanshao1219', db='world_innodb',
+charset = 'utf8')
+
+@app.route('/')
+@app.route('/index')
+def index():
+    user = { 'nickname': 'Shuai' }   # fake user
+    return  render_template("index.html", title = 'Home', user = user)
+
+@app.route('/database')
+def cities_page():
+    with db:
+        cur = db.cursor()
+        cur.execute('SELECT Name FROM City LIMIT 200;')
+        query_results = cur.fetchall()
+    cities = ''
+    for result in query_results:
+        cities += result[0]
+        cities += '<br>'
+    return cities

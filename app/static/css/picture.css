@@ -1,0 +1,22 @@
+.jumbotron {
+	color = #000;
+	text-align: center;
+	background-image: url(../pic13b.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.set_width{
+	width: 650px !important;
+	float: left !important;
+}
+
+.set_width2{
+	width: 750px !important;
+	float: left !important;
+}
+
+.set_width_map{
+	width: 200px !important;
+	float: left !important
+}
