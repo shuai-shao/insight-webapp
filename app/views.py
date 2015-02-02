@@ -10,13 +10,13 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.cross_validation import train_test_split
 import cPickle
 
-@app.route('/')
-@app.route('/index')
-def index():
-    user = { 'nickname': 'Sean' }   # fake user
-    return  render_template("index.html", title = 'Home', user = user)
+# @app.route('/')
+# @app.route('/index')
+# def index():
+#     user = { 'nickname': 'Sean' }   # fake user
+#     return  render_template("index.html", title = 'Home', user = user)
 
-@app.route('/input')
+@app.route('/')
 def prices_input():
     return render_template('input.html')
 
