@@ -10,39 +10,11 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.cross_validation import train_test_split
 import cPickle
 
-
-db = mdb.connect(user='shuai', host='localhost',passwd = 'seanshao1219', db='sublet',
-charset = 'utf8')
-
 @app.route('/')
 @app.route('/index')
 def index():
-    user = { 'nickname': 'Shuai' }   # fake user
+    user = { 'nickname': 'Sean' }   # fake user
     return  render_template("index.html", title = 'Home', user = user)
-
-@app.route('/database')
-def prices_page():
-    with db:
-        cur = db.cursor()
-        cur.execute('SELECT Price, Walkscore FROM bay_walkscore LIMIT 200;')
-        query_results = cur.fetchall()
-    prices = ''
-    for result in query_results:
-        prices += str(result[1])
-        prices += '<br>'
-    return prices
-
-@app.route("/db_fancy")
-def prices_page_fancy():
-    with db:
-        cur = db.cursor()
-        cur.execute("SELECT ListingID, Price, Walkscore FROM bay_walkscore LIMIT 30;")
-        
-        query_results = cur.fetchall()
-    prices = []
-    for result in query_results:
-        prices.append(dict(ListingID= result[0], Price= str(result[1]), Walkscore = str(result[2])))
-    return render_template('prices.html', prices = prices)
 
 @app.route('/input')
 def prices_input():
